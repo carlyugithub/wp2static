@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<!--[if IE 8]>
+		<html xmlns="http://www.w3.org/1999/xhtml" class="ie8" lang="en-US">
+	<![endif]--><!--[if !(IE 8) ]><!--><html xmlns="http://www.w3.org/1999/xhtml" lang="en-US"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>Log In ‹ Technet Blogs — WordPress</title><link rel="dns-prefetch" href="//ajax.aspnetcdn.com"><link rel="dns-prefetch" href="//s.w.org"><script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.1.min.js"></script><link rel="stylesheet" id="dashicons-css" href="https://blogs.msdn.microsoft.com/wp-includes/css/dashicons.min.css" type="text/css" media="all"><link rel="stylesheet" id="buttons-css" href="https://blogs.msdn.microsoft.com/wp-includes/css/buttons.min.css" type="text/css" media="all"><link rel="stylesheet" id="forms-css" href="https://blogs.msdn.microsoft.com/wp-admin/css/forms.min.css" type="text/css" media="all"><link rel="stylesheet" id="l10n-css" href="https://blogs.msdn.microsoft.com/wp-admin/css/l10n.min.css" type="text/css" media="all"><link rel="stylesheet" id="login-css" href="https://blogs.msdn.microsoft.com/wp-admin/css/login.min.css" type="text/css" media="all"><link rel="stylesheet" id="aad-sso-wordpress-css" href="https://blogs.msdn.microsoft.com/wp-content/plugins/aad-first-party-sso-wordpress//login.css" type="text/css" media="all"><meta name="robots" content="noindex,follow"><meta name="viewport" content="width=device-width"></head><body class="login login-action-login wp-core-ui  locale-en-us">
+		<div id="login">
+		<h1><a href="https://ppe.blogs.technet.microsoft.com/" title="Technet" tabindex="-1">Technet Blogs</a></h1>
+	
+<form name="loginform" id="loginform" action="https://blogs.msdn.microsoft.com/wp-login.php" method="post">
+	<p>
+		<label for="user_login">Username or Email Address<br><input type="text" name="log" id="user_login" class="input" value="" size="20"></label>
+	</p>
+	<p>
+		<label for="user_pass">Password<br><input type="password" name="pwd" id="user_pass" class="input" value="" size="20"></label>
+	</p>
+	
+			<p class="aadsso-login-form-text">
+				<a href="https://login.windows-ppe.net/common/oauth2/authorize?client_id=b1035957-6d26-45dd-ad55-31742e6f9fbd&response_mode=query&response_type=id_token&redirect_uri=https://ppe.blogs.technet.microsoft.com/wp-login.php&nonce=2be4020b1f&state=73ED0591-0311-502B-74F5-97B8ECDA2FC3">Sign in with your Microsoft account</a><br><a class="dim" href="https://login.windows-ppe.net/common/oauth2/logout?post_logout_redirect_uri=https://blogs.msdn.microsoft.com/wp-admin/">Sign out</a>
+			</p>
+			<p class="forgetmenot"><label for="rememberme"><input name="rememberme" type="checkbox" id="rememberme" value="forever"> Remember Me</label></p>
+	<p class="submit">
+		<input type="submit" name="wp-submit" id="wp-submit" class="button button-primary button-large" value="Log In"><input type="hidden" name="redirect_to" value="https://blogs.msdn.microsoft.com"><input type="hidden" name="testcookie" value="1"></p>
+</form>
+
+<p id="nav">
+	<a href="https://ppe.blogs.technet.microsoft.com/wp-login.php?action=lostpassword">Lost your password?</a>
+</p>
+
+<script type="text/javascript">
+function wp_attempt_focus(){
+setTimeout( function(){ try{
+d = document.getElementById('user_login');
+d.focus();
+d.select();
+} catch(e){}
+}, 200);
+}
+
+wp_attempt_focus();
+if(typeof wpOnload=='function')wpOnload();
+</script><p id="backtoblog"><a href="https://blogs.msdn.microsoft.com/">← Back to Technet Blogs</a></p>
+		
+	</div>
+
+	
+	    <script type="text/javascript">
+        (function msdn_hide_login_form(){
+            var jQueryInstance = $ || jQuery;
+            if(jQueryInstance('#login_error').length) {
+				jQueryInstance('#login h1').hide();
+                jQueryInstance('#loginform p label').parent().hide();
+                jQueryInstance('#loginform p input').parent().hide();
+                jQueryInstance('#loginform p a:first').hide();
+                jQueryInstance('#nav').hide();
+                jQueryInstance('#loginform').css('margin', '0px').css('border', '0px').css('padding', '0px');
+                jQueryInstance('#loginform .dim').removeClass('dim');
+                                // Set auto redirection when user login with corp account which our site doesn't support
+                if (jQueryInstance( '#login_error' ).html().indexOf( 'Invalid Account: ' ) != -1) {
+                    var hintDiv = $('<div />').addClass('message');
+                    jQueryInstance('#login_error').after(hintDiv);
+                    var seconds = 3;
+                    var messageHead = 'You will be redirected to account selection page in ';
+                    var messageTail = ' seconds...';
+                    hintDiv.html(messageHead + seconds + messageTail);
+                    function show_message() {
+                        if (seconds === 0) {
+                            clearInterval(loop);
+                            window.location = 'https://ppe.blogs.technet.microsoft.com/wp-login.php?aadsso_action=login&prompt=select_account';
+                        } else if(seconds > 0) {
+                            seconds--;
+                            hintDiv.html(messageHead + seconds + messageTail);
+                        }
+                    }
+                    var loop = setInterval(show_message, 1000);
+                }
+                            }
+        })();
+    </script><div class="clear"></div>
+	</body></html>
